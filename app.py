@@ -91,13 +91,14 @@ def show_greeting():
     }
     headers = {
         "Content-Type": "application/json"
+    
     data = json.dumps({
 
         "setting_type":"greeting",
                     "greeting":{
                         "text": u"Chào mừng bạn đến với bác sĩ tư vấn myDoctor!"
                     }
-        })
+    })
 
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
