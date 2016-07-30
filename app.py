@@ -106,7 +106,7 @@ def show_sug_buttons(recipient_id,sug_text):
                         {
                             "type":"postback",
                             "title": u"Đau tim",
-                            "payload": send_message(recipient_id, "ok")
+                            "payload": "USER_DEFINED_PAYLOAD"
                          },
                          {
                             "type":"postback",
