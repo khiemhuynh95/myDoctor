@@ -46,6 +46,8 @@ def webook():
 
                     send_video(sender_id, "http://files.flixpress.com/5781973_2545281.mp4")
 
+                    send_message(sender_id, "https://www.youtube.com/watch?v=YlLlCJxCQW8")
+
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
 
