@@ -47,7 +47,7 @@ def webook():
                         #send_typing(sender_id)
                         #time.sleep(1)
                         
-                        #show_get_started_button()
+                        show_get_started_button()
                         message_text = message_text.encode('utf-8')
                         #send_message(sender_id, message_text.encode('utf-8'))
                         if (message_text == "chào"):
