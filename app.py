@@ -2,7 +2,6 @@ import os
 import sys
 import json
 import time
-
 import requests
 from flask import Flask, request
 
@@ -64,23 +63,16 @@ def send_message(recipient_id, message_text):
     headers = {
         "Content-Type": "application/json"
     }
-
-    # data = json.dumps({
-    #     "recipient": {
-    #         "id": recipient_id
-    #     },
-    #     "sender_action":"typing_on"
-    # })
-
-
     data = json.dumps({
         "recipient": {
             "id": recipient_id
         },
-        "sender_action":"typing_on"
-
+        "sender_action":"typing_on",
+        "message": {
+            "text": message_text
+        }
     })
-    time.sleep(2)
+
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
         log(r.status_code)
