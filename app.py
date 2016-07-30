@@ -42,8 +42,8 @@ def webook():
                     message_text = messaging_event["message"]["text"]  # the message's text of fb user
 
                     #send back msg to user
-                    send_typing(sender_id)
-                    time.sleep(1)
+                    #send_typing(sender_id)
+                    #time.sleep(1)
                     message_text = message_text.encode('utf-8')
                     #send_message(sender_id, message_text.encode('utf-8'))
                     if (message_text == "chào")
