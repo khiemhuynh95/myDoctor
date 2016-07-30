@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 import os
 import sys
 import json
@@ -42,7 +44,14 @@ def webook():
                     #send back msg to user
                     send_typing(sender_id)
                     time.sleep(1)
-                    send_message(sender_id, "Hello Nova")
+
+                    if (message_text == u"chào")
+                        send_message(sender_id, u"Bạn bị đau ở đâu?")
+                    if (message_text == u"ngực")
+                        #show button
+                        show_sug_buttons(sender_id, u"Bạn có cái triệu chứng nào khác không?")    
+
+                    
 
                     send_video(sender_id, "http://files.flixpress.com/5781973_2545281.mp4")
 
@@ -58,6 +67,55 @@ def webook():
                     pass
 
     return "ok", 200
+
+
+def show_sug_buttons(recipient_id,sug_text):
+    ##log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
+
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+         "message":{
+            "attachment":{
+                "type":"template",
+                    "payload":{
+                        "template_type":"button",
+                        "text":sug_text,
+                        "buttons":[
+                        {
+                            "type":"web_url",
+                            "url":"https://petersapparel.parseapp.com",
+                            "title": u"Ho ra máu"
+                        },
+                        {
+                            "type":"postback",
+                            "title": u"Đau tim",
+                            "payload":"USER_DEFINED_PAYLOAD"
+                         },
+                         {
+                            "type":"postback",
+                            "title": u"Khó thở",
+                            "payload":"USER_DEFINED_PAYLOAD"
+                         }
+                        ]
+            }
+        }
+    }
+})
+    
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+
 
 
 def send_message(recipient_id, message_text):
