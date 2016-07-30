@@ -227,7 +227,35 @@ def send_youtube(recipient_id, video_name ,img_url,video_url):
                             {
                                 "title": video_name,
                                 "image_url": img_url,
-                                #"subtitle":"We\'ve got the right hat for everyone.",
+                                "subtitle":"www.youtube.com",
+                                "buttons":[
+                                  {
+                                    "type":"web_url",
+                                    "url": video_url,
+                                    "title":"xem video"
+                                  }
+                                              
+                                ]
+                            },
+
+
+                                {
+                                "title": video_name,
+                                "image_url": img_url,
+                                "subtitle":"www.youtube.com",
+                                "buttons":[
+                                  {
+                                    "type":"web_url",
+                                    "url": video_url,
+                                    "title":"xem video"
+                                  }
+                                              
+                                ]
+                            },
+                            {
+                                "title": video_name,
+                                "image_url": img_url,
+                                "subtitle":"www.youtube.com",
                                 "buttons":[
                                   {
                                     "type":"web_url",
@@ -237,6 +265,7 @@ def send_youtube(recipient_id, video_name ,img_url,video_url):
                                               
                                 ]
                             }
+
                         ]
                     }
             }
