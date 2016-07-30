@@ -57,9 +57,10 @@ def webook():
                     if (message_text == "ngực"):
                         show_sug_buttons(sender_id, u"Bạn có cái triệu chứng nào khác không?".encode('utf-8'))    
                     if  (message_text == "yt"):
-                        send_youtube(sender_id, "Suc khoe cho moi nguoi" , "https://i.ytimg.com/vi/Mxx4c78HMCs/hqdefault.jpg" ,"https://www.youtube.com/watch?v=s2pSRx2f7Bc")
+                        send_youtube(sender_id, u"Sức khỏe và đời sống" , "https://i.ytimg.com/vi/Mxx4c78HMCs/hqdefault.jpg" ,"https://www.youtube.com/watch?v=Mxx4c78HMCs")
 
-
+                    if  (message_text == "Đau tim")
+                        send_message(sender_id, u"Bạn bị bệnh rồi".encode('utf-8'))
                     ##send_video(sender_id, "http://files.flixpress.com/5781973_2545281.mp4")
 
                     ##send_video(sender_id, "https://www.youtube.com/watch?v=YlLlCJxCQW8")
