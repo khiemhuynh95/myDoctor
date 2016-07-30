@@ -49,10 +49,14 @@ def webook():
                     message_text = message_text.encode('utf-8')
                     #send_message(sender_id, message_text.encode('utf-8'))
                     if (message_text == "chào"):
+                        send_message(sender_id, u"Chào Khiem, bạn bao nhiêu tuổi?".encode('utf-8'))
+                    if (message_text == "1995"):                  
+                        send_message(sender_id, u"Giới tính của bạn?".encode('utf-8'))
+                    if (message_text == "nam"):
                         send_message(sender_id, u"Bạn bị đau ở đâu?".encode('utf-8'))
                     if (message_text == "ngực"):
-                        #show button
                         show_sug_buttons(sender_id, u"Bạn có cái triệu chứng nào khác không?".encode('utf-8'))    
+                       
 
                     
 
