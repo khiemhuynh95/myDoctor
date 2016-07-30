@@ -44,7 +44,7 @@ def webook():
                     time.sleep(1)
                     send_message(sender_id, "Hello Nova!")
 
-                    send_video(sender_id, "https://www.youtube.com/watch?v=YlLlCJxCQW8")
+                    send_video(sender_id, "http://files.flixpress.com/5781973_2545281.mp4")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
