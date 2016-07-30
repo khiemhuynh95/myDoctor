@@ -37,34 +37,37 @@ def webook():
             for messaging_event in entry["messaging"]:
                 if messaging_event.get("message"):  # someone sent us a message
                     #get info from sender
-                    sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
-                    recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-                    message_text = messaging_event["message"]["text"]  # the message's text of fb user
+                    #try:
+                        sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
+                        recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
+                        message_text = messaging_event["message"]["text"]  # the message's text of fb user
 
-                    #print message_text
-                    #send back msg to user
-                    #send_typing(sender_id)
-                    #time.sleep(1)
-                    #send_message(sender_id, '%s' % type(message_text))
-                    show_get_started_button()
-                    message_text = message_text.encode('utf-8')
-                    #send_message(sender_id, message_text.encode('utf-8'))
-                    if (message_text == "chào"):
-                        send_message(sender_id, u"Chào Khiem, bạn bao nhiêu tuổi?".encode('utf-8'))
-                    if (message_text == "21"):                  
-                        send_message(sender_id, u"Giới tính của bạn?".encode('utf-8'))
-                    if (message_text == "nam"):
-                        send_message(sender_id, u"Bạn bị đau ở đâu?".encode('utf-8'))
-                    if (message_text == "ngực"):
-                        show_sug_buttons(sender_id, u"Bạn có cái triệu chứng nào khác không?".encode('utf-8'))    
-                    if  (message_text == "yt"):
-                        send_youtube(sender_id, u"Sức khỏe và đời sống" , "https://i.ytimg.com/vi/Mxx4c78HMCs/hqdefault.jpg" ,"https://www.youtube.com/watch?v=Mxx4c78HMCs")
+                        #print message_text
+                        #send back msg to user
+                        #send_typing(sender_id)
+                        #time.sleep(1)
+                        #send_message(sender_id, '%s' % type(message_text))
+                        #show_get_started_button()
+                        message_text = message_text.encode('utf-8')
+                        #send_message(sender_id, message_text.encode('utf-8'))
+                        if (message_text == "chào"):
+                            send_message(sender_id, u"Chào Khiem, bạn bao nhiêu tuổi?".encode('utf-8'))
+                        if (message_text == "21"):                  
+                            send_message(sender_id, u"Giới tính của bạn?".encode('utf-8'))
+                        if (message_text == "nam"):
+                            send_message(sender_id, u"Bạn bị đau ở đâu?".encode('utf-8'))
+                        if (message_text == "ngực"):
+                            show_sug_buttons(sender_id, u"Bạn có cái triệu chứng nào khác không?".encode('utf-8'))    
+                        if  (message_text == "yt"):
+                            send_youtube(sender_id, u"Sức khỏe và đời sống" , "https://i.ytimg.com/vi/Mxx4c78HMCs/hqdefault.jpg" ,"https://www.youtube.com/watch?v=Mxx4c78HMCs")
 
-                    if  (message_text == "Đau tim"):
-                        send_message(sender_id, u"Bạn bị bệnh rồi".encode('utf-8'))
-                    ##send_video(sender_id, "http://files.flixpress.com/5781973_2545281.mp4")
+                        if  (message_text == "Đau tim"):
+                            send_message(sender_id, u"Bạn bị bệnh rồi".encode('utf-8'))
+                        ##send_video(sender_id, "http://files.flixpress.com/5781973_2545281.mp4")
 
-                    ##send_video(sender_id, "https://www.youtube.com/watch?v=YlLlCJxCQW8")
+                        ##send_video(sender_id, "https://www.youtube.com/watch?v=YlLlCJxCQW8")
+                    #except:
+                        #pass
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
