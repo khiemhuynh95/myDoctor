@@ -96,7 +96,8 @@ def service(mode, user_id, message):
     response = json.loads(response.content)
     if response.status == 1:
         return None
-    
+
+    log(response)
     data = response.message
     if response.type == '0':
         pass
