@@ -57,7 +57,7 @@ def webook():
                     if (message_text == "ngực"):
                         show_sug_buttons(sender_id, u"Bạn có cái triệu chứng nào khác không?".encode('utf-8'))    
                     if  (message_text == "yt"):
-                        send_youtube(sender_id, "https://www.youtube.com/watch?v=s2pSRx2f7Bc")
+                        send_youtube(sender_id, "Suc khoe cho moi nguoi" , "https://i.ytimg.com/vi/Mxx4c78HMCs/hqdefault.jpg" ,"https://www.youtube.com/watch?v=s2pSRx2f7Bc")
 
 
                     ##send_video(sender_id, "http://files.flixpress.com/5781973_2545281.mp4")
@@ -203,7 +203,7 @@ def send_video(recipient_id, video_url):
         log(r.status_code)
         log(r.text)
 
-def send_youtube(recipient_id, video_url):
+def send_youtube(recipient_id, video_name ,img_url,video_url):
     
     log("sending message to {recipient}".format(recipient=recipient_id))
 
@@ -222,19 +222,30 @@ def send_youtube(recipient_id, video_url):
             "attachment":{
                 "type":"template",
                     "payload":{
-                        "template_type":"button",
-                        "text": "Hello",
-                        "buttons":[
+                        "template_type":"generic",
+                            "elements":[
                             {
-                                "type":"web_url",
-                                "url": video_url,
-                                "title": u"xem video"
-                            }            
+                                "title": video_name,
+                                "image_url": img_url,
+                                #"subtitle":"We\'ve got the right hat for everyone.",
+                                "buttons":[
+                                  {
+                                    "type":"web_url",
+                                    "url": video_url,
+                                    "title":"xem video"
+                                  }
+                                              
+                                ]
+                            }
                         ]
                     }
             }
         }
-    })
+
+
+
+        }
+    )
     
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
