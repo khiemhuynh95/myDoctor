@@ -141,6 +141,7 @@ def service(mode, user_id, message):
     elif response.type == '2':
         pass
     elif response.type == '3':
+        pass
 
 
 
