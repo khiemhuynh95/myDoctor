@@ -46,7 +46,7 @@ def webook():
                     #send_typing(sender_id)
                     #time.sleep(1)
                     #send_message(sender_id, '%s' % type(message_text))
-                    
+                    show_greeting()
                     message_text = message_text.encode('utf-8')
                     #send_message(sender_id, message_text.encode('utf-8'))
                     if (message_text == "chào"):
@@ -84,6 +84,25 @@ def webook():
 
     return "ok", 200
 
+
+def show_greeting():
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    data = json.dumps({
+
+        "setting_type":"greeting",
+                    "greeting":{
+                        "text": u"Chào mừng bạn đến với bác sĩ tư vấn myDoctor!"
+                    }
+        })
+
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
 
 def show_sug_buttons(recipient_id,sug_text):
     ##log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
