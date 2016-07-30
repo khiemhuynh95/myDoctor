@@ -130,7 +130,7 @@ def send_map(recipient_id, latitude, longitude):
                         }]
                     }
                 }
-        };
+        }
     })
     
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
