@@ -42,7 +42,7 @@ def webook():
                     #send back msg to user
                     send_typing(sender_id)
                     ##time.sleep(1)
-                    send_message(sender_id, "Hello Nova!")
+                    send_message(sender_id, "Hello Nova")
 
                     send_video(sender_id, "http://files.flixpress.com/5781973_2545281.mp4")
 
