@@ -91,6 +91,7 @@ def show_get_started_button():
     }
     headers = {
         "Content-Type": "application/json"
+    }
     
     data = json.dumps({
 
