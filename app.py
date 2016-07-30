@@ -214,6 +214,24 @@ def send_youtube(recipient_id, video_name ,img_url,video_url):
         "Content-Type": "application/json"
     }
 
+
+    r = []
+    for _ in range(0, 20):
+        r.append({
+                                "title": video_name,
+                                "image_url": img_url,
+                                "subtitle":"www.youtube.com",
+                                "buttons":[
+                                  {
+                                    "type":"web_url",
+                                    "url": video_url,
+                                    "title":"xem video"
+                                  }
+                                              
+                                ]
+                            })
+
+
     data = json.dumps({
         "recipient": {
             "id": recipient_id
@@ -223,50 +241,7 @@ def send_youtube(recipient_id, video_name ,img_url,video_url):
                 "type":"template",
                     "payload":{
                         "template_type":"generic",
-                            "elements":[
-                            {
-                                "title": video_name,
-                                "image_url": img_url,
-                                "subtitle":"www.youtube.com",
-                                "buttons":[
-                                  {
-                                    "type":"web_url",
-                                    "url": video_url,
-                                    "title":"xem video"
-                                  }
-                                              
-                                ]
-                            },
-
-
-                                {
-                                "title": video_name,
-                                "image_url": img_url,
-                                "subtitle":"www.youtube.com",
-                                "buttons":[
-                                  {
-                                    "type":"web_url",
-                                    "url": video_url,
-                                    "title":"xem video"
-                                  }
-                                              
-                                ]
-                            },
-                            {
-                                "title": video_name,
-                                "image_url": img_url,
-                                "subtitle":"www.youtube.com",
-                                "buttons":[
-                                  {
-                                    "type":"web_url",
-                                    "url": video_url,
-                                    "title":"xem video"
-                                  }
-                                              
-                                ]
-                            }
-
-                        ]
+                            "elements": r
                     }
             }
         }
