@@ -44,6 +44,8 @@ def webook():
                     #send back msg to user
                     #send_typing(sender_id)
                     #time.sleep(1)
+                    send_message(sender_id, '%s' % type(message_text))
+                    '''
                     message_text = message_text.encode('utf-8')
                     #send_message(sender_id, message_text.encode('utf-8'))
                     if (message_text == "chào")
@@ -51,7 +53,7 @@ def webook():
                     if (message_text == "ngực")
                         #show button
                         show_sug_buttons(sender_id, u"Bạn có cái triệu chứng nào khác không?".encode('utf-8'))    
-
+'''
                     
 
 
