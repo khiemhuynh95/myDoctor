@@ -117,16 +117,16 @@ def send_map(recipient_id, latitude, longitude):
                         'elements': [{
                             'title': u'Bệnh viện gần nhất',
                             'subtitle':'2 km',
-                            'image_url': 'http://staticmap.openstreetmap.de/staticmap.php?center=' + latitude + ',' + longitude + '&zoom=18&size=640x480&maptype=osmarenderer&markers=' + latitude + ',' + longitude + ',ol-marker'',
+                            'image_url': 'http://staticmap.openstreetmap.de/staticmap.php?center=' + latitude + ',' + longitude + '&zoom=18&size=640x480&maptype=osmarenderer&markers=' + latitude + ',' + longitude + ',ol-marker',
                             #'image_url' : 'http://staticmap.openstreetmap.de/staticmap.php?center=10.762952,106.682340&zoom=15&size=640x480&markers=10.762952,106.682340,ol-marker',
                             'buttons': [{
                                 'type': 'web_url',
                                 'url': 'http://choray.vn/',
-                                'title': 'xem thông tin'
+                                'title': u'xem thông tin'
                             }, {
                                 'type': 'web_url',
                                 'url': 'http://staticmap.openstreetmap.de',
-                                'title': u'Hướng dẫn đường'
+                                'title': u'hướng dẫn đường'
                             }]
                         }]
                     }
