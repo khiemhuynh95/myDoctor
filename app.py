@@ -1,11 +1,13 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 import os
 import sys
 import json
 import time
 import requests
 from flask import Flask, request
+
 
 app = Flask(__name__)
 
@@ -64,7 +66,8 @@ def webook():
                         if  (message_text == "Đau tim"):
                             send_message(sender_id, u"Bạn bị bệnh rồi".encode('utf-8'))
                         ##send_video(sender_id, "http://files.flixpress.com/5781973_2545281.mp4")
-
+                        if  (message_text == "map"):
+                            send_map(sender_id, '10.762952','106.682340')
                         ##send_video(sender_id, "https://www.youtube.com/watch?v=YlLlCJxCQW8")
                     except:
                         pass
@@ -89,6 +92,55 @@ def webook():
 
 
 
+
+
+def send_map(recipient_id, latitude, longitude):
+    
+    log("sending message to {recipient}".format(recipient=recipient_id))
+
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        message = {
+                'attachment': {
+                    'type': 'template',
+                    'payload': {
+                        'template_type': 'generic',
+                        'elements': [{
+                            'title': 'Closest HOSPITAL',
+                            'subtitle':'2 km',
+                            'image_url': 'http://staticmap.openstreetmap.de/staticmap.php?center=' + latitude + ',' + longitude + '&zoom=18&size=640x480&maptype=osmarenderer&markers=' + latitude + ',' + longitude,
+                            'buttons': [{
+                                'type': 'web_url',
+                                'url': 'http://choray.vn/',
+                                'title': 'Hospital Information'
+                            }, {
+                                'type': 'web_url',
+                                'url': 'http://staticmap.openstreetmap.de',
+                                'title': 'Directions'
+                            }]
+                        }]
+                    }
+                }
+        };
+    })
+    
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+
+
+
+
 def show_get_started_button():
     params = {
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
@@ -99,13 +151,13 @@ def show_get_started_button():
     
     data = json.dumps({
 
-         "setting_type":"call_to_actions",
-  "thread_state":"new_thread",
-  "call_to_actions":[
-    {
-      "payload":"USER_DEFINED_PAYLOAD"
-    }
-  ]
+                     "setting_type":"call_to_actions",
+              "thread_state":"new_thread",
+              "call_to_actions":[
+                {
+                  "payload":"USER_DEFINED_PAYLOAD"
+                }
+              ]
     })
 
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
@@ -150,15 +202,16 @@ def show_sug_buttons(recipient_id,sug_text):
                             "payload":"USER_DEFINED_PAYLOAD"
                          }
                         ]
+                }   
             }
         }
-    }
-})
+    })
     
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
         log(r.status_code)
         log(r.text)
+
 
 
 
