@@ -48,7 +48,7 @@ def webook():
                     
                     message_text = message_text.encode('utf-8')
                     #send_message(sender_id, message_text.encode('utf-8'))
-                    if (message_text == "chào")
+                    if (message_text == "chao")
                         send_message(sender_id, u"Bạn bị đau ở đâu?".encode('utf-8'))
                     if (message_text == "ngực")
                         #show button
