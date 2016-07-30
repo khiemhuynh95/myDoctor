@@ -56,9 +56,8 @@ def webook():
                         send_message(sender_id, u"Bạn bị đau ở đâu?".encode('utf-8'))
                     if (message_text == "ngực"):
                         show_sug_buttons(sender_id, u"Bạn có cái triệu chứng nào khác không?".encode('utf-8'))    
-                       
-
-                    
+                    if  (message_text == "youtube"):
+                        send_message(sender_id, "https://www.youtube.com/watch?v=s2pSRx2f7Bc")
 
 
                     ##send_video(sender_id, "http://files.flixpress.com/5781973_2545281.mp4")
