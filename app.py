@@ -223,7 +223,7 @@ def send_youtube(recipient_id, video_url):
                 "type":"template",
                     "payload":{
                         "template_type":"button",
-                        "text":sug_text,
+                        #"text":sug_text,
                         "buttons":[
                             {
                                 "type":"web_url",
