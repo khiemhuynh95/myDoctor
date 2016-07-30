@@ -34,14 +34,17 @@ def webook():
 
             for messaging_event in entry["messaging"]:
                 if messaging_event.get("message"):  # someone sent us a message
-
+                    #get info from sender
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-                    message_text = messaging_event["message"]["text"]  # the message's text
+                    message_text = messaging_event["message"]["text"]  # the message's text of fb user
 
+                    #send back msg to user
                     send_typing(sender_id)
                     time.sleep(1)
                     send_message(sender_id, "Hello Nova!")
+
+                    send_video(sender_id, "https://www.youtube.com/watch?v=YlLlCJxCQW8")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
@@ -81,7 +84,7 @@ def send_message(recipient_id, message_text):
         log(r.text)
 
 def send_typing(recipient_id):
-    #message_text = "haha"
+    
     log("sending message to {recipient}".format(recipient=recipient_id))
 
     params = {
@@ -96,6 +99,36 @@ def send_typing(recipient_id):
             "id": recipient_id
         },
         "sender_action":"typing_on"
+    })
+    
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+
+def send_video(recipient_id, video_url):
+    
+    log("sending message to {recipient}".format(recipient=recipient_id))
+
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+
+    data = json.dumps({
+       "recipient":{
+            "id": recipient_id
+        },
+        "message":{
+            "attachment":{
+                "type":"video",
+                "payload":{
+                    "url": video_url
+                }
+            }
+        }
     })
     
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
