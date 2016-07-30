@@ -44,15 +44,15 @@ def webook():
                     #send back msg to user
                     send_typing(sender_id)
                     time.sleep(1)
-                    send_message(sender_id, message_text.encode('utf-8'))
-                    '''
-                    if (message_text == u"chào")
-                        send_message(sender_id, u"Bạn bị đau ở đâu?")
-                    if (message_text == u"ngực")
+                    message_text = message_text.encode('utf-8')
+                    #send_message(sender_id, message_text.encode('utf-8'))
+                    if (message_text == u"chào".encode('utf-8'))
+                        send_message(sender_id, u"Bạn bị đau ở đâu?".encode('utf-8'))
+                    if (message_text == u"ngực".encode('utf-8'))
                         #show button
-                        show_sug_buttons(sender_id, u"Bạn có cái triệu chứng nào khác không?")    
+                        show_sug_buttons(sender_id, u"Bạn có cái triệu chứng nào khác không?".encode('utf-8'))    
 
-                    '''
+                    
 
 
                     ##send_video(sender_id, "http://files.flixpress.com/5781973_2545281.mp4")
