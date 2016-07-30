@@ -44,8 +44,7 @@ def webook():
                     #send back msg to user
                     send_typing(sender_id)
                     time.sleep(1)
-                    send_message(sender_id, message_text)
-                    send_message(sender_id, message_text == u'chào')
+                    send_message(sender_id, message_text.encode('utf-8'))
                     '''
                     if (message_text == u"chào")
                         send_message(sender_id, u"Bạn bị đau ở đâu?")
