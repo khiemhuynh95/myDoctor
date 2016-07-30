@@ -26,9 +26,7 @@ def verify():
 
 @app.route('/', methods=['POST'])
 def webook():
-
     # endpoint for processing incoming messaging events
-
     data = request.get_json()
     log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
@@ -44,7 +42,9 @@ def webook():
                         recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                         message_text = messaging_event["message"]["text"]  # the message's text of fb user
 
-                      
+                        service(1, sender_id, message_text)
+
+                        '''
                         #send back msg to user
                         #send_typing(sender_id)
                         #time.sleep(1)
@@ -65,13 +65,12 @@ def webook():
 
                         if  (message_text == "Đau tim"):
                             send_message(sender_id, u"Bạn bị bệnh rồi".encode('utf-8'))
-                        ##send_video(sender_id, "http://files.flixpress.com/5781973_2545281.mp4")
+                        
                         if  (message_text == "map"):
                             send_map(sender_id, '10.762952','106.682340')
-                        ##send_video(sender_id, "https://www.youtube.com/watch?v=YlLlCJxCQW8")
+                        '''
                     except:
                         pass
-
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
 
@@ -84,13 +83,64 @@ def webook():
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     payload = messaging_event["postback"]["payload"]  # the message's text of fb user
                     payload = payload.encode('utf-8') 
-                    if (payload == "Đau tim"):
-                        send_message(sender_id, u"Đau tim".encode('utf-8'))
+                    service(1, sender_id, payload)
 
 
     return "ok", 200
 
 
+def service(mode, user_id, message):
+    response = requests.get('http://521504a0.ngrok.io', {'mode': mode, 'user_id': user_id, 'message': message})
+    if response.status_code != 200:
+        return None
+    response = json.loads(response.content)
+    if response.status == 1:
+        return None
+    
+    data = response.message
+    if response.type == '0':
+        pass
+    elif response.type == '1':
+
+        params = {
+                "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+            }
+        headers = {
+                "Content-Type": "application/json"
+            }
+
+        buttons = []
+        for choice in data.choices:
+            buttons.add({
+                    "type":"postback",
+                    "title": choice,
+                    "payload":  choice
+                })
+
+        data = json.dumps({
+                "recipient": {
+                    "id": user_id
+                },
+                 "message":{
+                    "attachment":{
+                        "type":"template",
+                            "payload":{
+                                "template_type":"button",
+                                "text": data.question,
+                                "buttons": buttons
+                        }   
+                    }
+                }
+            })
+            
+            r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+            if r.status_code != 200:
+                log(r.status_code)
+                log(r.text)
+
+    elif response.type == '2':
+        pass
+    elif response.type == '3':
 
 
 
@@ -138,8 +188,6 @@ def send_map(recipient_id, latitude, longitude):
     if r.status_code != 200:
         log(r.status_code)
         log(r.text)
-
-
 
 
 def show_get_started_button():
