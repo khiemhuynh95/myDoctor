@@ -59,7 +59,7 @@ def webook():
                     if  (message_text == "yt"):
                         send_youtube(sender_id, u"Sức khỏe và đời sống" , "https://i.ytimg.com/vi/Mxx4c78HMCs/hqdefault.jpg" ,"https://www.youtube.com/watch?v=Mxx4c78HMCs")
 
-                    if  (message_text == "Đau tim")
+                    if  (message_text == "Đau tim"):
                         send_message(sender_id, u"Bạn bị bệnh rồi".encode('utf-8'))
                     ##send_video(sender_id, "http://files.flixpress.com/5781973_2545281.mp4")
 
