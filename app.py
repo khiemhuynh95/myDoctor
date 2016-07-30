@@ -71,7 +71,7 @@ def send_message(recipient_id, message_text):
         "sender_action":{"typing_on"},
         
     })
-
+    time.sleep(2)
     # "message": {
     #         "text": message_text
     #     }
