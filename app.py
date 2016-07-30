@@ -40,7 +40,7 @@ def webook():
                     message_text = messaging_event["message"]["text"]  # the message's text
 
                     send_typing(sender_id)
-                    
+                    time.sleep(1)
                     send_message(sender_id, "Hello Nova!")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
@@ -72,7 +72,7 @@ def send_message(recipient_id, message_text):
         },
         "message": {
             "text": message_text
-        },  "sender_action":"typing_on"
+        }
     })
     
     
@@ -98,7 +98,7 @@ def send_typing(recipient_id):
         },
         "sender_action":"typing_on"
     })
-    time.sleep(1)
+    
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
         log(r.status_code)
