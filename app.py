@@ -109,7 +109,7 @@ def send_map(recipient_id, latitude, longitude):
         "recipient": {
             "id": recipient_id
         },
-        message = {
+        'message' : {
                 'attachment': {
                     'type': 'template',
                     'payload': {
