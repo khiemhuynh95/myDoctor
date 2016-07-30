@@ -56,8 +56,8 @@ def webook():
                         send_message(sender_id, u"Bạn bị đau ở đâu?".encode('utf-8'))
                     if (message_text == "ngực"):
                         show_sug_buttons(sender_id, u"Bạn có cái triệu chứng nào khác không?".encode('utf-8'))    
-                    if  (message_text == "youtube"):
-                        send_message(sender_id, "https://www.youtube.com/watch?v=s2pSRx2f7Bc")
+                    if  (message_text == "yt"):
+                        send_youtube(sender_id, "https://www.youtube.com/watch?v=s2pSRx2f7Bc")
 
 
                     ##send_video(sender_id, "http://files.flixpress.com/5781973_2545281.mp4")
@@ -194,6 +194,44 @@ def send_video(recipient_id, video_url):
                 "payload":{
                     "url": video_url
                 }
+            }
+        }
+    })
+    
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
+
+def send_youtube(recipient_id, video_url):
+    
+    log("sending message to {recipient}".format(recipient=recipient_id))
+
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+         "message":{
+            "attachment":{
+                "type":"template",
+                    "payload":{
+                        "template_type":"button",
+                        "text":sug_text,
+                        "buttons":[
+                            {
+                                "type":"web_url",
+                                "url": video_url,
+                                "title": u"xem video"
+                            }            
+                        ]
+                    }
             }
         }
     })
