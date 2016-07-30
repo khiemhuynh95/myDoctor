@@ -44,18 +44,21 @@ def webook():
                     #send back msg to user
                     send_typing(sender_id)
                     time.sleep(1)
-
+                    send_message(sender_id, message_text)
+                    send_message(sender_id, message_text == u'chào')
+                    '''
                     if (message_text == u"chào")
                         send_message(sender_id, u"Bạn bị đau ở đâu?")
                     if (message_text == u"ngực")
                         #show button
                         show_sug_buttons(sender_id, u"Bạn có cái triệu chứng nào khác không?")    
 
-                    
+                    '''
 
-                    send_video(sender_id, "http://files.flixpress.com/5781973_2545281.mp4")
 
-                    send_video(sender_id, "https://www.youtube.com/watch?v=YlLlCJxCQW8")
+                    ##send_video(sender_id, "http://files.flixpress.com/5781973_2545281.mp4")
+
+                    ##send_video(sender_id, "https://www.youtube.com/watch?v=YlLlCJxCQW8")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
