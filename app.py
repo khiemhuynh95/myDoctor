@@ -50,7 +50,7 @@ def webook():
                     #send_message(sender_id, message_text.encode('utf-8'))
                     if (message_text == "chào"):
                         send_message(sender_id, u"Chào Khiem, bạn bao nhiêu tuổi?".encode('utf-8'))
-                    if (message_text == "20"):                  
+                    if (message_text == "21"):                  
                         send_message(sender_id, u"Giới tính của bạn?".encode('utf-8'))
                     if (message_text == "nam"):
                         send_message(sender_id, u"Bạn bị đau ở đâu?".encode('utf-8'))
