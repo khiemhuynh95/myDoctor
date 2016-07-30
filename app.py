@@ -37,16 +37,16 @@ def webook():
             for messaging_event in entry["messaging"]:
                 if messaging_event.get("message"):  # someone sent us a message
                     #get info from sender
-                    #try:
+                    try:
                         sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                         recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                         message_text = messaging_event["message"]["text"]  # the message's text of fb user
 
-                        #print message_text
+                      
                         #send back msg to user
                         #send_typing(sender_id)
                         #time.sleep(1)
-                        #send_message(sender_id, '%s' % type(message_text))
+                        
                         #show_get_started_button()
                         message_text = message_text.encode('utf-8')
                         #send_message(sender_id, message_text.encode('utf-8'))
@@ -66,8 +66,8 @@ def webook():
                         ##send_video(sender_id, "http://files.flixpress.com/5781973_2545281.mp4")
 
                         ##send_video(sender_id, "https://www.youtube.com/watch?v=YlLlCJxCQW8")
-                    #except:
-                        #pass
+                    except:
+                        pass
 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
