@@ -115,7 +115,7 @@ def send_map(recipient_id, latitude, longitude):
                     'payload': {
                         'template_type': 'generic',
                         'elements': [{
-                            'title': 'Closest HOSPITAL',
+                            'title': u'Bệnh viện gần nhất',
                             'subtitle':'2 km',
                             #'image_url': 'http://staticmap.openstreetmap.de/staticmap.php?center=' + latitude + ',' + longitude + '&zoom=18&size=640x480&maptype=osmarenderer&markers=' + latitude + ',' + longitude,
                             'image_url' : 'http://staticmap.openstreetmap.de/staticmap.php?center=10.762952,106.682340&zoom=15&size=640x480&markers=10.762952,106.682340,ol-marker'
@@ -126,7 +126,7 @@ def send_map(recipient_id, latitude, longitude):
                             }, {
                                 'type': 'web_url',
                                 'url': 'http://staticmap.openstreetmap.de',
-                                'title': u'hướng dẫn đường'
+                                'title': u'Hướng dẫn đường'
                             }]
                         }]
                     }
