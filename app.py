@@ -77,7 +77,7 @@ def webook():
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     payload = messaging_event["postback"]["payload"]  # the message's text of fb user
 
-                    if (payload == "Đau tim"):
+                    if (payload == u"Đau tim".encode('utf-8')):
                         send_message(sender_id, u"Đau tim".encode('utf-8'))
 
 
