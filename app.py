@@ -216,7 +216,7 @@ def send_youtube(recipient_id, video_name ,img_url,video_url):
 
 
     r = []
-    for _ in range(0, 12):
+    for _ in range(0, 5):
         r.append({
                                 "title": video_name,
                                 "image_url": img_url,
