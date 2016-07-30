@@ -39,6 +39,8 @@ def webook():
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
 
+                    #send_typing(sender_id)
+                    #time.sleep(1)
                     send_message(sender_id, "Hello Nova!")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
@@ -68,18 +70,38 @@ def send_message(recipient_id, message_text):
         "recipient": {
             "id": recipient_id
         },
-        "sender_action":"typing_on"
-        
+        "message": {
+            "text": message_text
+        },  "sender_action":"typing_on"
     })
-    time.sleep(2)
-    # "message": {
-    #         "text": message_text
-    #     }
+    
+    
     r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
     if r.status_code != 200:
         log(r.status_code)
         log(r.text)
 
+def send_typing(recipient_id):
+    log("sending message to {recipient}: {text}".format(recipient=recipient_id))
+
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+
+    data = json.dumps({
+        "recipient": {
+            "id": recipient_id
+        },
+        "sender_action":"typing_on"
+    })
+    
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
 
 def log(message):  # simple wrapper for logging to stdout on heroku
     print str(message)
