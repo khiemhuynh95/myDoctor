@@ -39,8 +39,8 @@ def webook():
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
 
-                    #send_typing(sender_id)
-                    #time.sleep(1)
+                    send_typing(sender_id)
+                    time.sleep(1)
                     send_message(sender_id, "Hello Nova!")
 
                 if messaging_event.get("delivery"):  # delivery confirmation
@@ -82,7 +82,8 @@ def send_message(recipient_id, message_text):
         log(r.text)
 
 def send_typing(recipient_id):
-    log("sending message to {recipient}: {text}".format(recipient=recipient_id))
+    message_text = "haha"
+    log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
     params = {
         "access_token": os.environ["PAGE_ACCESS_TOKEN"]
