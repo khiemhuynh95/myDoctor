@@ -106,7 +106,7 @@ def show_sug_buttons(recipient_id,sug_text):
                         {
                             "type":"postback",
                             "title": u"Đau tim",
-                            "payload":{"text" = "ok"}
+                            "payload":{"text" : "ok"}
                          },
                          {
                             "type":"postback",
