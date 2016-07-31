@@ -113,7 +113,8 @@ def send_map(recipient_id, message):
                     #'image_url' : 'http://staticmap.openstreetmap.de/staticmap.php?center=10.762952,106.682340&zoom=15&size=640x480&markers=10.762952,106.682340,ol-marker',
                     'buttons': [{
                         'type': 'web_url',
-                        'url': 'http://staticmap.openstreetmap.de/staticmap.php?center=' + latitude + ',' + longitude + '&zoom=18&size=640x480&markers=' + latitude + ',' + longitude + ',ol-marker',
+                        #'url': 'http://staticmap.openstreetmap.de/staticmap.php?center=' + latitude + ',' + longitude + '&zoom=18&size=640x480&markers=' + latitude + ',' + longitude + ',ol-marker',
+                        'url': 'http://maps.google.com/maps?q=loc:' + latitude + ',' + longitude + '&z=20',
                         'title': u'Hướng dẫn đường'
                     }
                 ]})
