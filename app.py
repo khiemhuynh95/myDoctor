@@ -72,6 +72,9 @@ def service(mode, user_id, message):
         return None
 
     content = json.loads(response.content)
+    log("Content: ")
+    log(content)
+
     if content['status'] == '1':
         return None
 
