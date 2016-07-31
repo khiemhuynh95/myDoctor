@@ -68,8 +68,8 @@ def service(mode, user_id, message):
         return None
 
     content = json.loads(response.content)
-    log("Content: ")
-    log(content)
+    # log("Content: ")
+    # log(content)
 
     if content['status'] == '1':
         log("It's stupid!")
@@ -248,7 +248,7 @@ def send_buttons(recipient_id, message):
 
 
 def send_message(recipient_id, message_text):
-    message_text = message_text.encode('utf8')
+    #message_text = message_text.encode('utf8')
     log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
     data = json.dumps({
