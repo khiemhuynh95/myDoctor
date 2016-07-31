@@ -339,7 +339,7 @@ def send_youtube(recipient_id, message):
                       {
                         "type":"web_url",
                         "url": video_url,
-                        "title":"Xem video"
+                        "title":"Xem"
                       }
                                   
                     ]
