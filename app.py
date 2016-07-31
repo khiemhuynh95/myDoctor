@@ -49,11 +49,14 @@ def webook():
 
                 if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
                     #pass
-                    sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
-                    recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
-                    payload = messaging_event["postback"]["payload"]  # the message's text of fb user
-                    payload = payload
-                    service(1, sender_id, payload)
+                    try:
+                        sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
+                        recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
+                        payload = messaging_event["postback"]["payload"]  # the message's text of fb user
+                        payload = payload.encode('utf-8') 
+                        service(1, sender_id, payload)
+                    except:
+                        pass
 
     return "ok", 200
 
