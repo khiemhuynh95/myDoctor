@@ -52,7 +52,7 @@ def webook():
                     sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     payload = messaging_event["postback"]["payload"]  # the message's text of fb user
-                    payload = payload.encode('utf-8') 
+                    payload = payload
                     service(1, sender_id, payload)
 
     return "ok", 200
