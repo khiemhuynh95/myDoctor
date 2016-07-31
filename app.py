@@ -95,14 +95,13 @@ def service(mode, user_id, message):
         return None
 
     response = response.content
-    if response.status == '1':
+    if response['status'] == '1':
         return None
 
-    log(response)
-    data = response.message
-    if response.type == '0':
+    data = response['message']
+    if response['type'] == '0':
         pass
-    elif response.type == '1':
+    elif response['type'] == '1':
 
         params = {
                 "access_token": os.environ["PAGE_ACCESS_TOKEN"]
@@ -112,7 +111,7 @@ def service(mode, user_id, message):
             }
 
         buttons = []
-        for choice in data.choices:
+        for choice in data['choices']:
             buttons.add({
                     "type":"postback",
                     "title": choice,
@@ -128,7 +127,7 @@ def service(mode, user_id, message):
                         "type":"template",
                             "payload":{
                                 "template_type":"button",
-                                "text": data.question,
+                                "text": data['question'],
                                 "buttons": buttons
                         }   
                     }
