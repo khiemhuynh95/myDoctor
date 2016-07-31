@@ -81,6 +81,7 @@ def service(mode, user_id, message):
 
     log("Ahihi")
     message = content['message']
+    message = message.encode('UTF-8')
     log(type(message))
     log(message)
 
