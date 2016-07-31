@@ -79,11 +79,11 @@ def service(mode, user_id, message):
         log("It's stupid!")
         return None
 
-    log("Ahihi")
-    message = content['message']
-    message = message.encode('UTF-8')
-    log(type(message))
-    log(message)
+    # log("Ahihi")
+    # message = content['message']
+    # message = message.encode('UTF-8')
+    # log(type(message))
+    # log(message)
 
     if content['type'] == '0': #text
         log("Received: Text")
@@ -258,7 +258,7 @@ def send_buttons(recipient_id, message):
 
 
 def send_message(recipient_id, message_text):
-
+    message_text = message_text.encode('UTF-8')
     log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
     data = json.dumps({
