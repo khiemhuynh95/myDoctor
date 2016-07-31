@@ -80,6 +80,8 @@ def service(mode, user_id, message):
         log("Received: Video")
         send_youtube(user_id, message)
     elif content['type'] == '3': #map
+        log("Received: Map")
+
         pass
 
 
@@ -314,13 +316,13 @@ def send_video(recipient_id, video_url):
 def send_youtube(recipient_id, message):
     log("sending message to {recipient}".format(recipient=recipient_id))
 
-    title = message['title']
-    img_url = message['image_url']
-    subtitle = message['subtitle']
-    video_url = message['link']
-
     r = []
-    for _ in range(0, 5):
+    for msg in message:
+        title = msg['title']
+        img_url = msg['image_url']
+        subtitle = msg['subtitle']
+        video_url = msg['link']
+
         r.append({
                     "title": title,
                     "image_url": img_url,
