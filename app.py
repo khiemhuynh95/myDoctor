@@ -99,6 +99,7 @@ def service(mode, user_id, message):
         return None
 
     data = response['message']
+    log(data)
     if response['type'] == '0':
         pass
     elif response['type'] == '1':
@@ -139,9 +140,9 @@ def service(mode, user_id, message):
             log(r.status_code)
             log(r.text)
 
-    elif response.type == '2':
+    elif response['type'] == '2':
         pass
-    elif response.type == '3':
+    elif response['type'] == '3':
         pass
 
 
