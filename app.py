@@ -81,6 +81,7 @@ def service(mode, user_id, message):
         send_youtube(user_id, message)
     elif content['type'] == '3': #map
         log("Received: Map")
+        send_map(user_id, message)
 
 
 
