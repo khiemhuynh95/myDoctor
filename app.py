@@ -100,7 +100,7 @@ def service(mode, user_id, message):
         return None
 
     data = content['message']
-    log(data)
+    #log(data)
     if content['type'] == '0':
         pass
     elif content['type'] == '1':
@@ -111,7 +111,8 @@ def service(mode, user_id, message):
         headers = {
                 "Content-Type": "application/json"
             }
-
+        log(data)
+        log(type(data))
         buttons = []
         for choice in data['choices']:
             buttons.add({
@@ -119,6 +120,8 @@ def service(mode, user_id, message):
                     "title": choice,
                     "payload":  choice
                 })
+
+        log(buttons)
 
         data = json.dumps({
                 "recipient": {
