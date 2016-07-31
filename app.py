@@ -78,7 +78,10 @@ def service(mode, user_id, message):
     if content['status'] == '1':
         return None
 
+
+    log(content['status'])
     message = content['message']
+    log(type(message))
     log(message)
 
     if content['type'] == '0': #text
