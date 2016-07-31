@@ -72,11 +72,13 @@ def service(mode, user_id, message):
     content = json.loads(response.content)
     log("Content: ")
     log(content)
+    log("Status: ")
+    log(content['status'])
 
     if content['status'] == '1':
         return None
 
-    log(content['status'])
+    log("Ahihi")
     message = content['message']
     log(type(message))
     log(message)
