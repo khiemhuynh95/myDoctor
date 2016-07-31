@@ -76,6 +76,7 @@ def service(mode, user_id, message):
     log(content['status'])
 
     if content['status'] == '1':
+        log("It's stupid!")
         return None
 
     log("Ahihi")
