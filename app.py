@@ -94,15 +94,14 @@ def service(mode, user_id, message):
     if response.status_code != 200:
         return None
 
-    response = response.content
-    if response['status'] == '1':
+    content = json.loads(response.content)
+    if content['status'] == '1':
         return None
 
-    data = response['message']
-    log(data)
-    if response['type'] == '0':
+    data = content['message']
+    if content['type'] == '0':
         pass
-    elif response['type'] == '1':
+    elif content['type'] == '1':
 
         params = {
                 "access_token": os.environ["PAGE_ACCESS_TOKEN"]
@@ -140,9 +139,9 @@ def service(mode, user_id, message):
             log(r.status_code)
             log(r.text)
 
-    elif response['type'] == '2':
+    elif content['type'] == '2':
         pass
-    elif response['type'] == '3':
+    elif content['type'] == '3':
         pass
 
 
