@@ -63,8 +63,6 @@ def webook():
 
 def service(mode, user_id, message):
     response = requests.get('http://521504a0.ngrok.io/process', {'mode': mode, 'user_id': user_id, 'message': message})
-    log('response: ')
-    log(response)
 
     if response.status_code != 200:
         return None
@@ -72,18 +70,10 @@ def service(mode, user_id, message):
     content = json.loads(response.content)
     log("Content: ")
     log(content)
-    log("Status: ")
-    log(content['status'])
 
     if content['status'] == '1':
         log("It's stupid!")
         return None
-
-    # log("Ahihi")
-    # message = content['message']
-    # message = message.encode('UTF-8')
-    # log(type(message))
-    # log(message)
 
     if content['type'] == '0': #text
         log("Received: Text")
