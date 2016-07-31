@@ -116,7 +116,7 @@ def service(mode, user_id, message):
         log(data)
         buttons = []
         for choice in data['choices']:
-            buttons.add({
+            buttons.append({
                     "type":"postback",
                     "title": choice,
                     "payload":  choice
