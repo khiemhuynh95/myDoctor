@@ -77,7 +77,8 @@ def service(mode, user_id, message):
         log("Received: Buttons")
         send_buttons(user_id, message)
     elif content['type'] == '2': #video
-        pass
+        log("Received: Video")
+        send_youtube(user_id, message)
     elif content['type'] == '3': #map
         pass
 
@@ -310,34 +311,31 @@ def send_video(recipient_id, video_url):
         log(r.status_code)
         log(r.text)
 
-def send_youtube(recipient_id, video_name ,img_url,video_url):
-    
+def send_youtube(recipient_id, message):
     log("sending message to {recipient}".format(recipient=recipient_id))
 
-    params = {
-        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
-    }
-    headers = {
-        "Content-Type": "application/json"
-    }
-
+    title = message['title']
+    img_url = message['image_url']
+    subtitle = message['subtitle']
+    video_url = message['link']
 
     r = []
     for _ in range(0, 5):
         r.append({
-                                "title": video_name,
-                                "image_url": img_url,
-                                "subtitle":"www.youtube.com",
-                                "buttons":[
-                                  {
-                                    "type":"web_url",
-                                    "url": video_url,
-                                    "title":"xem video"
-                                  }
-                                              
-                                ]
-                            })
+                    "title": title,
+                    "image_url": img_url,
+                    "subtitle":subtitle,
+                    "buttons":[
+                      {
+                        "type":"web_url",
+                        "url": video_url,
+                        "title":"Xem video"
+                      }
+                                  
+                    ]
+                })
 
+    log(r)
 
     data = json.dumps({
         "recipient": {
@@ -350,18 +348,11 @@ def send_youtube(recipient_id, video_name ,img_url,video_url):
                         "template_type":"generic",
                             "elements": r
                     }
+                }
             }
         }
-
-
-
-        }
     )
-    
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
-    if r.status_code != 200:
-        log(r.status_code)
-        log(r.text)
+    send_data(data)
 
 
 
