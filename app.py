@@ -95,7 +95,7 @@ def service(mode, user_id, message):
         return None
 
     content = json.loads(response.content)
-    log(content['status'])
+    #log(content['status'])
     if content['status'] == '1':
         return None
 
@@ -111,8 +111,9 @@ def service(mode, user_id, message):
         headers = {
                 "Content-Type": "application/json"
             }
-        log(data)
+        log('xx')
         log(type(data))
+        log(data)
         buttons = []
         for choice in data['choices']:
             buttons.add({
