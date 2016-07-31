@@ -68,10 +68,13 @@ def service(mode, user_id, message):
         return None
 
     message = content['message']
+    log(message)
 
     if content['type'] == '0': #text
+        log("Received: Text")
         send_message(user_id, message)
-    elif content['type'] == '1':
+    elif content['type'] == '1': #buttons
+        log("Received: Buttons")
         send_buttons(user_id, message)
     elif content['type'] == '2': #video
         pass
