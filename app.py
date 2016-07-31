@@ -63,6 +63,11 @@ def webook():
 
 def service(mode, user_id, message):
     response = requests.get('http://521504a0.ngrok.io/process', {'mode': mode, 'user_id': user_id, 'message': message})
+    log('response: ')
+    log(response)
+    log('message')
+    log(message)
+
     if response.status_code != 200:
         return None
 
