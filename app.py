@@ -82,19 +82,34 @@ def service(mode, user_id, message):
     elif content['type'] == '3': #map
         log("Received: Map")
 
-        pass
 
 
-def send_map(recipient_id, latitude, longitude):
+def send_map(recipient_id, message):
     
     log("sending message to {recipient}".format(recipient=recipient_id))
 
-    params = {
-        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
-    }
-    headers = {
-        "Content-Type": "application/json"
-    }
+    r = []
+    for msg in message:
+        latitude = msg['latitude']
+        longitude = msg['longitude']
+        title = msg['title']
+        subtitle = msg['subtitle']
+        r.append({
+                    'title': title,
+                    'subtitle':subtitle,
+                    'image_url': 'http://staticmap.openstreetmap.de/staticmap.php?center=' + latitude + ',' + longitude + '&zoom=18&size=640x480&maptype=osmarenderer&markers=' + latitude + ',' + longitude + ',ol-marker',
+                    #'image_url' : 'http://staticmap.openstreetmap.de/staticmap.php?center=10.762952,106.682340&zoom=15&size=640x480&markers=10.762952,106.682340,ol-marker',
+                    'buttons': [{
+                        'type': 'web_url',
+                        'url': 'http://choray.vn/',
+                        'title': u'xem thông tin'
+                    }, {
+                        'type': 'web_url',
+                        'url': 'http://staticmap.openstreetmap.de',
+                        'title': u'hướng dẫn đường'
+                    }
+                ]})
+
 
     data = json.dumps({
         "recipient": {
@@ -105,30 +120,13 @@ def send_map(recipient_id, latitude, longitude):
                     'type': 'template',
                     'payload': {
                         'template_type': 'generic',
-                        'elements': [{
-                            'title': u'Bệnh viện gần nhất',
-                            'subtitle':'2 km',
-                            'image_url': 'http://staticmap.openstreetmap.de/staticmap.php?center=' + latitude + ',' + longitude + '&zoom=18&size=640x480&maptype=osmarenderer&markers=' + latitude + ',' + longitude + ',ol-marker',
-                            #'image_url' : 'http://staticmap.openstreetmap.de/staticmap.php?center=10.762952,106.682340&zoom=15&size=640x480&markers=10.762952,106.682340,ol-marker',
-                            'buttons': [{
-                                'type': 'web_url',
-                                'url': 'http://choray.vn/',
-                                'title': u'xem thông tin'
-                            }, {
-                                'type': 'web_url',
-                                'url': 'http://staticmap.openstreetmap.de',
-                                'title': u'hướng dẫn đường'
-                            }]
-                        }]
+                        'elements': r
                     }
                 }
         }
     })
-    
-    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
-    if r.status_code != 200:
-        log(r.status_code)
-        log(r.text)
+
+    send_data(data)
 
 
 def show_get_started_button():
