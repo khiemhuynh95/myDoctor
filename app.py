@@ -248,7 +248,7 @@ def send_buttons(recipient_id, message):
 
 
 def send_message(recipient_id, message_text):
-    message_text = message_text.encode('UTF-8')
+    message_text = message_text.encode('utf8')
     log("sending message to {recipient}: {text}".format(recipient=recipient_id, text=message_text))
 
     data = json.dumps({
