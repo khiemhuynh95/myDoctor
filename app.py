@@ -111,6 +111,8 @@ def send_map(recipient_id, message):
                 ]})
 
 
+    log(r)
+
     data = json.dumps({
         "recipient": {
             "id": recipient_id
@@ -123,8 +125,9 @@ def send_map(recipient_id, message):
                         'elements': r
                     }
                 }
+            }
         }
-    })
+    )
 
     send_data(data)
 
