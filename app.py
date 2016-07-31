@@ -28,12 +28,9 @@ def verify():
 def webook():
     # endpoint for processing incoming messaging events
     data = request.get_json()
-    log(data)  # you may not want to log every incoming message in production, but it's good for testing
 
     if data["object"] == "page":
-
         for entry in data["entry"]:
-
             for messaging_event in entry["messaging"]:
                 if messaging_event.get("message"):  # someone sent us a message
                     #get info from sender
@@ -41,34 +38,7 @@ def webook():
                         sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                         recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                         message_text = messaging_event["message"]["text"]  # the message's text of fb user
-
-                        service(1, sender_id, message_text)
-
-                        '''
-                        #send back msg to user
-                        #send_typing(sender_id)
-                        #time.sleep(1)
-                        
-                        show_get_started_button()
-                        message_text = message_text.encode('utf-8')
-                        #send_message(sender_id, message_text.encode('utf-8'))
-                        if (message_text == "chào"):
-                            send_message(sender_id, u"Chào Khiem, bạn bao nhiêu tuổi?".encode('utf-8'))
-                        if (message_text == "21"):                  
-                            send_message(sender_id, u"Giới tính của bạn?".encode('utf-8'))
-                        if (message_text == "nam"):
-                            send_message(sender_id, u"Bạn bị đau ở đâu?".encode('utf-8'))
-                        if (message_text == "ngực"):
-                            show_sug_buttons(sender_id, u"Bạn có cái triệu chứng nào khác không?".encode('utf-8'))    
-                        if  (message_text == "yt"):
-                            send_youtube(sender_id, u"Sức khỏe và đời sống" , "https://i.ytimg.com/vi/Mxx4c78HMCs/hqdefault.jpg" ,"https://www.youtube.com/watch?v=Mxx4c78HMCs")
-
-                        if  (message_text == "Đau tim"):
-                            send_message(sender_id, u"Bạn bị bệnh rồi".encode('utf-8'))
-                        
-                        if  (message_text == "map"):
-                            send_map(sender_id, '10.762952','106.682340')
-                        '''
+                        service(0, sender_id, message_text)
                     except:
                         pass
                 if messaging_event.get("delivery"):  # delivery confirmation
@@ -85,7 +55,6 @@ def webook():
                     payload = payload.encode('utf-8') 
                     service(1, sender_id, payload)
 
-
     return "ok", 200
 
 
@@ -95,61 +64,19 @@ def service(mode, user_id, message):
         return None
 
     content = json.loads(response.content)
-    #log(content['status'])
     if content['status'] == '1':
         return None
 
-    data = content['message']
-    #log(data)
-    if content['type'] == '0':
-        pass
+    message = content['message']
+
+    if content['type'] == '0': #text
+        send_message(user_id, message)
     elif content['type'] == '1':
-
-        params = {
-                "access_token": os.environ["PAGE_ACCESS_TOKEN"]
-            }
-        headers = {
-                "Content-Type": "application/json"
-            }
-        log('xx')
-        log(type(data))
-        log(data)
-        buttons = []
-        for choice in data['choices']:
-            buttons.append({
-                    "type":"postback",
-                    "title": choice,
-                    "payload":  choice
-                })
-
-        log(buttons)
-
-        data = json.dumps({
-                "recipient": {
-                    "id": user_id
-                },
-                 "message":{
-                    "attachment":{
-                        "type":"template",
-                            "payload":{
-                                "template_type":"button",
-                                "text": data['question'],
-                                "buttons": buttons
-                        }   
-                    }
-                }
-            })
-            
-        r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
-        if r.status_code != 200:
-            log(r.status_code)
-            log(r.text)
-
-    elif content['type'] == '2':
+        send_buttons(user_id, message)
+    elif content['type'] == '2': #video
         pass
-    elif content['type'] == '3':
+    elif content['type'] == '3': #map
         pass
-
 
 
 def send_map(recipient_id, latitude, longitude):
@@ -269,7 +196,45 @@ def show_sug_buttons(recipient_id,sug_text):
         log(r.status_code)
         log(r.text)
 
+def send_data(data):
+    params = {
+        "access_token": os.environ["PAGE_ACCESS_TOKEN"]
+    }
+    headers = {
+        "Content-Type": "application/json"
+    }
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages", params=params, headers=headers, data=data)
+    if r.status_code != 200:
+        log(r.status_code)
+        log(r.text)
 
+
+def send_buttons(recipient_id, data):
+    buttons = []
+    for choice in data['choices']:
+        buttons.append({
+                "type":"postback",
+                "title": choice,
+                "payload":  choice
+            })
+
+    data = json.dumps({
+            "recipient": {
+                "id": user_id
+            },
+             "message":{
+                "attachment":{
+                    "type":"template",
+                        "payload":{
+                            "template_type":"button",
+                            "text": data['question'],
+                            "buttons": buttons
+                    }   
+                }
+            }
+        })
+
+    send_data(data)
 
 
 def send_message(recipient_id, message_text):
