@@ -95,10 +95,12 @@ def service(mode, user_id, message):
         return None
 
     content = json.loads(response.content)
+    log(content['status'])
     if content['status'] == '1':
         return None
 
     data = content['message']
+    log(data)
     if content['type'] == '0':
         pass
     elif content['type'] == '1':
