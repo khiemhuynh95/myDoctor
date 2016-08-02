@@ -39,8 +39,10 @@ def webook():
                         recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                         message_text = messaging_event["message"]["text"]  # the message's text of fb user
                         send_typing(sender_id)
-                        send_message(sender_id,u"Hello Linh")
-                        show_sug_buttons(sender_id, u"Bạn có bị ngu không? <3")
+                        send_message(sender_id,u"Hello Linh, bạn muốn làm gì?")
+                        if (message_text == u'Đo độ ngu'):
+                            show_sug_buttons(sender_id, u"Ngu cỡ nào? <3")
+                        
                     except:
                         pass
                 if messaging_event.get("delivery"):  # delivery confirmation
@@ -57,11 +59,11 @@ def webook():
                         payload = messaging_event["postback"]["payload"]  # the message's text of fb user
                         payload = payload.encode('utf-8') 
                         #service(1, sender_id, payload)
-                        if (payload == u"Ngu nhiều".encode('utf-8')):
+                        if (payload == u"Ngu nhiều"):
                             send_message(sender_id, u'cần muối')
-                        if (payload == u"Ngu ít".encode('utf-8')):
+                        if (payload == u"Ngu ít"):
                             send_message(sender_id, u'Thiệt không? :))')
-                        if (payload == u"Không ngu".encode('utf-8')):
+                        if (payload == u"Không ngu"):
                             send_message(sender_id, u'éo quan tâm nhé')
                     except:
                         pass
