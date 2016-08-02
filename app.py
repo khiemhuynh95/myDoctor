@@ -38,7 +38,8 @@ def webook():
                         sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                         recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                         message_text = messaging_event["message"]["text"]  # the message's text of fb user
-                        service(0, sender_id, message_text)
+                        send_typing(sender_id)
+                        send_message(sender_id,"Hello")
                     except:
                         pass
                 if messaging_event.get("delivery"):  # delivery confirmation
