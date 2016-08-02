@@ -40,10 +40,10 @@ def webook():
                         message_text = messaging_event["message"]["text"]  # the message's text of fb user
                         #send_typing(sender_id)
                         #message_text = message_text.encode('utf-8')
-
-                        if (message_text == 'hi'):
+                        message_text = message_text.encode('utf-8')
+                        if (message_text == u'hi'):
                             send_message(sender_id, u"Hello Linh, bạn muốn làm gì?")
-                        if (message_text == 'Đo độ ngu'):
+                        if (message_text == u'Đo độ ngu'):
                             show_sug_buttons(sender_id, u"Ngu cỡ nào? <3")
                         
                     except:
