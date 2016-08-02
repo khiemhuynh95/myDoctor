@@ -39,7 +39,8 @@ def webook():
                         recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                         message_text = messaging_event["message"]["text"]  # the message's text of fb user
                         send_typing(sender_id)
-                        send_message(sender_id,"Hello")
+                        send_message(sender_id,"Hello Linh")
+                        show_sug_buttons(sender_id, u"Bạn có bị ngu không? <3")
                     except:
                         pass
                 if messaging_event.get("delivery"):  # delivery confirmation
@@ -55,7 +56,13 @@ def webook():
                         recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                         payload = messaging_event["postback"]["payload"]  # the message's text of fb user
                         payload = payload.encode('utf-8') 
-                        service(1, sender_id, payload)
+                        #service(1, sender_id, payload)
+                        if (payload == u"Ngu nhiều"):
+                            send_message(sender_id, u'cần muối')
+                        if (payload == u"Ngu ít"):
+                            send_message(sender_id, u'Thiệt không? :))')
+                        if (payload == u"Không ngu"):
+                            send_message(sender_id,u'éo quan tâm nhé')
                     except:
                         pass
 
@@ -190,16 +197,16 @@ def show_sug_buttons(recipient_id,sug_text):
                         {
                             "type":"web_url",
                             "url":"https://petersapparel.parseapp.com",
-                            "title": u"Ho ra máu"
+                            "title": u"Ngu nhiều"
                         },
                         {
                             "type":"postback",
-                            "title": u"Đau tim",
-                            "payload":  u"Đau tim"
+                            "title": u"Ngu ít",
+                            "payload":  u"Ngu ít"
                          },
                          {
                             "type":"postback",
-                            "title": u"Khó thở",
+                            "title": u"Không ngu",
                             "payload":"USER_DEFINED_PAYLOAD"
                          }
                         ]
