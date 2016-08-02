@@ -57,11 +57,11 @@ def webook():
                         payload = messaging_event["postback"]["payload"]  # the message's text of fb user
                         payload = payload.encode('utf-8') 
                         #service(1, sender_id, payload)
-                        if (payload == "Ngu nhiều"):
+                        if (payload == u"Ngu nhiều"):
                             send_message(sender_id, u'cần muối')
-                        if (payload == "Ngu ít"):
+                        if (payload == u"Ngu ít"):
                             send_message(sender_id, u'Thiệt không? :))')
-                        if (payload == "Không ngu"):
+                        if (payload == u"Không ngu"):
                             send_message(sender_id, u'éo quan tâm nhé')
                     except:
                         pass
