@@ -39,6 +39,7 @@ def webook():
                         recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                         message_text = messaging_event["message"]["text"]  # the message's text of fb user
                         send_typing(sender_id)
+                        message_text = message_text.encode('utf-8')
                         if (message_text == u'hi'):
                             send_message(sender_id,u"Hello Linh, bạn muốn làm gì?")
                         if (message_text == u'Đo độ ngu'):
