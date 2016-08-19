@@ -72,6 +72,7 @@ def webook():
     return "ok", 200
 
 
+
 def service(mode, user_id, message):
     response = requests.get('http://521504a0.ngrok.io/process', {'mode': mode, 'user_id': user_id, 'message': message})
     log('response: ')
