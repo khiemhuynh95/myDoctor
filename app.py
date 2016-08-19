@@ -41,10 +41,9 @@ def webook():
                         #send_typing(sender_id)
                         #message_text = message_text.encode('utf-8')
                         message_text = message_text.encode('utf-8')
-                        if (message_text == u'hi'):
-                            send_message(sender_id, u"Hello Linh, bạn muốn làm gì?")
-                        if (message_text == u'Đo độ ngu'):
-                            show_sug_buttons(sender_id, u"Ngu cỡ nào? <3")
+                        
+                        send_message(sender_id, "Hello")
+                       
                         
                     except:
                         pass
