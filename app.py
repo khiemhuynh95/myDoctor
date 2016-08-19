@@ -12,6 +12,7 @@ from flask import Flask, request
 app = Flask(__name__)
 
 
+
 @app.route('/', methods=['GET'])
 def verify():
     # when the endpoint is registered as a webhook, it must
