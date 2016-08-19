@@ -44,7 +44,6 @@ def webook():
                         
                         send_message(sender_id, "Hello")
                        
-                        
                     except:
                         pass
                 if messaging_event.get("delivery"):  # delivery confirmation
