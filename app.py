@@ -42,7 +42,7 @@ def webook():
                         #message_text = message_text.encode('utf-8')
                         #message_text = message_text.encode('utf-8')
                         
-                        send_message(sender_id, "Hello")
+                        send_message(sender_id, "Hello Nova team")
                        
                     except:
                         pass
