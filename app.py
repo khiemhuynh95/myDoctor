@@ -40,9 +40,9 @@ def webook():
                         message_text = messaging_event["message"]["text"]  # the message's text of fb user
                         #send_typing(sender_id)
                         #message_text = message_text.encode('utf-8')
-                        message_text = message_text.encode('utf-8')
+                        #message_text = message_text.encode('utf-8')
                         
-                        send_message(sender_id, "Hello :D :)")
+                        send_message(sender_id, "Hello")
                        
                     except:
                         pass
